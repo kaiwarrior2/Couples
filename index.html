@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Пары</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 </head>
 <body>
     <div class="content">
@@ -19,11 +20,23 @@
         <div class="board">
             <p class="board__subtitle"><strong>Настроить количество карточек (от 2 до 6)</strong></p>
             <input class="board__input" type="number" placeholder="По горизонтали / вертикали" min="2" max="6" step="2">
-            <button class="board__button">Начать</button>
+            <button class="board__button button">Начать</button>
         </div>
 
     </div>
     </div>
+    <template id="cardTemplate">
+        <div class="card">
+            <i class="fa-solid flipped-icon"></i>
+            <i class="fa-solid default-icon"></i>
+        </div>
+    </template>
+
+    <template id="gameTableTemplate">
+        <div class="table"></div>
+        <button class="table__button button">Рестарт</button>
+    </template>
+
     <script src="index.js"></script>
 </body>
 </html>
