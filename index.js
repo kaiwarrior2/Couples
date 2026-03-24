@@ -8,6 +8,7 @@ startBtn.addEventListener('click', () => {
     const count = columns * columns;
     gameBoard.querySelector('.board').style.display = 'none';
     createBoard(columns, count);
+    startTimer();
 });
 
 function shuffleArray(array) {
@@ -46,10 +47,44 @@ const couple = {
   secondClickable: true
 };
 
+let totalTime = 60;
+let totalFlips = 0;
+let intervalId = null;
+let gameOver = false;
+
+function startTimer() {
+  const timeEl = document.querySelector('.state__time');
+  const movesEl = document.querySelector('.state__moves');
+
+  intervalId = setInterval(() => {
+    totalTime--;
+    timeEl.textContent = `Время: ${totalTime} сек`;
+    movesEl.textContent = `Шаги: ${totalFlips} шагов`;
+
+    if (totalTime <= 0) {
+      clearInterval(intervalId);
+      gameOver = true;
+      alert('Время вышло! Игра окончена.');
+    }
+  }, 1000);
+}
+
+function isWin() {
+  const gameTable = document.querySelector('.table');
+  if (Array.from(gameTable.children).every((card) => card.classList.contains('flip'))) {
+    clearInterval(intervalId);
+    setTimeout(() => {
+      alert('Поздравляем! Вы нашли все пары! 🎉');
+    }, 1000);
+  }
+}
+
 function gameLogic(card) {
+  if (gameOver) return;
   if (!couple.firstClickable && !couple.secondClickable) return;
 
   card.classList.add('flip');
+  totalFlips++;
 
   if (couple.first === null) {
     couple.first = card;

@@ -6,6 +6,10 @@
 
 body {
   font-family: Verdana, sans-serif;
+  background-image: url('img/Фон.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .content {
@@ -87,13 +91,40 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(218, 69, 218, 0.6);
+  background-color: rgba(218, 69, 218, 0.3);
   border-radius: 5px;
   transition: .3s;
   font-size: 30px;
   cursor: pointer;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .card:hover {
-  background-color: rgba(218, 69, 218, 1);
+  background-color: rgba(218, 69, 218, 0.5);
+}
+
+.card .flipped-icon {
+  display: none;
+}
+
+.card .default-icon {
+  display: block;
+}
+
+.card.flip {
+  background-color: rgba(100, 149, 237, 0.8);
+}
+
+.card.flip .flipped-icon {
+  display: block;
+}
+
+.card.flip .default-icon {
+  display: none;
+}
+
+.card.successfully {
+  background-color: rgba(50, 205, 50, 0.7);
+  pointer-events: none;
 }
