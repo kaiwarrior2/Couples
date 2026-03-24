@@ -66,12 +66,13 @@ body {
   font-size: 20px;
   text-transform: uppercase;
   letter-spacing: 2px;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.15);
   color: #000;
   border-radius: 40px;
   padding: 20px;
   cursor: pointer;
   border: 2px solid rgba(0,0,0, .2);
+  backdrop-filter: blur(5px);
 }
 
 .button:hover {
