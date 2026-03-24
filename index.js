@@ -39,11 +39,58 @@ function createIconsArray(initialCount) {
     return shuffleArray(doubleCards);
 }
 
+const couple = {
+  first: null,
+  firstClickable: true,
+  second: null,
+  secondClickable: true
+};
+
+function gameLogic(card) {
+  if (!couple.firstClickable && !couple.secondClickable) return;
+
+  card.classList.add('flip');
+
+  if (couple.first === null) {
+    couple.first = card;
+    couple.firstClickable = false;
+  } else if (couple.second === null && couple.first !== card) {
+    couple.second = card;
+    couple.secondClickable = false;
+  }
+
+  if (couple.first === null || couple.second === null) return;
+
+  const isEqual = couple.first.firstElementChild.classList[2] === couple.second.firstElementChild.classList[2];
+
+  if (isEqual) {
+    setTimeout(() => {
+      couple.first.classList.add('successfully');
+      couple.second.classList.add('successfully');
+      refresh();
+    }, 1000);
+  } else {
+    setTimeout(() => {
+      couple.first.classList.remove('flip');
+      couple.second.classList.remove('flip');
+      refresh();
+    }, 1000);
+  }
+
+  function refresh() {
+    couple.first = null;
+    couple.second = null;
+    couple.firstClickable = true;
+    couple.secondClickable = true;
+  }
+}
+
 function createCard(flippedIcon) {
     const template = document.getElementById('cardTemplate').content.cloneNode(true);
     const card = template.querySelector('.card');
     const iconEl = card.querySelector('.flipped-icon');
     iconEl.classList.add(`fa-${flippedIcon}`);
+    card.addEventListener('click', () => gameLogic(card));
     return card;
 }
 
