@@ -1,5 +1,6 @@
 import { createCard, createIconsArray } from './cards.js';
-import { startTimer, totalFlips } from './timer.js';
+import { startTimer } from './timer.js';
+import { totalFlips } from './gameLogic.js';
 
 const gameBoard = document.querySelector('.main');
 
@@ -18,4 +19,6 @@ export function createBoard(columns, count) {
 
   gameBoard.appendChild(table);
   gameBoard.appendChild(restartBtn);
+
+  startTimer(() => totalFlips);
 }
