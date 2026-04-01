@@ -21,6 +21,7 @@ function isWin() {
   const gameTable = document.querySelector('.table');
   if (Array.from(gameTable.children).every((card) => card.classList.contains('flip'))) {
     stopTimer();
+    gameOver = true;
     startConfetti();
     setTimeout(() => {
       alert('Поздравляем! Вы нашли все пары! 🎉');
