@@ -24,7 +24,7 @@ function isWin() {
     startConfetti();
     setTimeout(() => {
       alert('Поздравляем! Вы нашли все пары! 🎉');
-    }, 1000);
+    }, 5000);
   }
 }
 
