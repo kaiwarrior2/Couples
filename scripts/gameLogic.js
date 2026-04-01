@@ -1,7 +1,14 @@
 import { stopTimer, totalTime } from './timer.js';
+import { generateConfetti } from './confetti.js';
 
 export let totalFlips = 0;
 let gameOver = false;
+const confettiItems = generateConfetti(150);
+
+function startConfetti() {
+  const confettiContainer = document.querySelector('.confetti');
+  confettiItems.forEach(c => confettiContainer.appendChild(c));
+}
 
 const couple = {
   first: null,
@@ -14,6 +21,7 @@ function isWin() {
   const gameTable = document.querySelector('.table');
   if (Array.from(gameTable.children).every((card) => card.classList.contains('flip'))) {
     stopTimer();
+    startConfetti();
     setTimeout(() => {
       alert('Поздравляем! Вы нашли все пары! 🎉');
     }, 1000);
